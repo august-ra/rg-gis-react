@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import { gisApi } from "../api/gisApi"
+import { getLinkGoogle, getLinkRosreestr, getLinkYandex } from "../utils/coordinates"
 
 
 export default function EditPanel({ current, statuses }) {
@@ -28,6 +29,13 @@ export default function EditPanel({ current, statuses }) {
               <p><strong>Адрес:</strong><br />{current.address}</p>
               <p><strong>Адрес в Яндекс:</strong><br />{current.address_from_yandex}</p>
               <p><strong>Координаты:</strong><br />{current.x}, {current.y}</p>
+
+              <p>
+                <strong>Ссылки:</strong><br />
+                <a href={getLinkRosreestr(current.x, current.y)} target="_blank" rel="noopener noreferrer">Росреестр</a><br />
+                <a href={getLinkGoogle(current.x, current.y)} target="_blank" rel="noopener noreferrer">Карты Гугл</a><br />
+                <a href={getLinkYandex(current.x, current.y)} target="_blank" rel="noopener noreferrer">Карты Яндекс</a>
+              </p>
 
               <h4>Статус</h4>
               <ul style={{ listStyle: "none", paddingInline: 0 }}>
