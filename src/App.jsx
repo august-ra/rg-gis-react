@@ -6,8 +6,9 @@ import LocalMap from "./components/LocalMap"
 import { gisApi } from "./api/gisApi"
 
 
-function App() {
+export default function App() {
   const [data, setData] = useState([])
+  const [current, setCurrent] = useState({})
 
   useEffect(() => {
     const fn = async () => {
@@ -23,11 +24,9 @@ function App() {
       {
         data.length
           && (
-            <LocalMap data={data} />
+            <LocalMap data={data} setCurrent={setCurrent} />
           )
       }
     </div>
   )
 }
-
-export default App

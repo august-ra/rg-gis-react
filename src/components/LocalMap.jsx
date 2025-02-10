@@ -4,11 +4,11 @@ import { YMaps, Map, Clusterer, Placemark, FullscreenControl, TypeSelector, List
 import { getDistinctOptions } from "../utils/arrays"
 
 
-export default function LocalMap({ data }) {
+export default function LocalMap({ data, setCurrent }) {
   const [mark, update] = useState(false)
-  const [areas, setAreas] = useState(getDistinctOptions("area", data))
-  const [kinds, setKinds] = useState(getDistinctOptions("kind", data, true))
-  const [statuses, setStatuses] = useState({
+  const [areas] = useState(getDistinctOptions("area", data))
+  const [kinds] = useState(getDistinctOptions("kind", data, true))
+  const [statuses] = useState({
     "новый":     true,
     "в работе":  true,
     "отклонено": false,
@@ -93,7 +93,7 @@ export default function LocalMap({ data }) {
 
                   return <Placemark key={item.id} modules={["geoObject.addon.balloon"]}
                                     geometry={[item.x, item.y]}
-                                    properties={properties} options={options} />
+                                    properties={properties} options={options} onClick={() => setCurrent(item)} />
                 })
               }
             </Clusterer>
