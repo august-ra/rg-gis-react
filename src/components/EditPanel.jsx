@@ -1,5 +1,23 @@
+import { useState } from "react"
+
+import { gisApi } from "../api/gisApi"
+
 
 export default function EditPanel({ current, statuses }) {
+  const [mark, update] = useState(0)
+
+  function setStatus(key) {
+    gisApi.addGIS(current._id, { ...current, status: key })
+
+    current.status = key
+
+    Object.keys(statuses).forEach((key) => {
+      statuses[key] = (key === current.status)
+    })
+
+    update(mark + 1)
+  }
+
   return (
     <div className="edit-panel">
       {
@@ -17,7 +35,9 @@ export default function EditPanel({ current, statuses }) {
                   Object.keys(statuses).map((key) => (
                     <li key={key}>
                       <label>
-                        <input type="radio" name="status" value={statuses[key]} checked={statuses[key]} />
+                        <input type="radio" name="status"
+                               value={statuses[key]} checked={statuses[key]}
+                               onChange={() => setStatus(key)} />
                         {key}
                       </label>
                     </li>

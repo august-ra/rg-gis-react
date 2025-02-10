@@ -8,13 +8,24 @@ import { gisApi } from "./api/gisApi"
 
 
 export default function App() {
+  const [mark, update] = useState(0)
   const [data, setData] = useState([])
-  const [current, setCurrent] = useState({})
+  const [current, setCurrent2] = useState({})
   const [statuses] = useState({
     "новый":     false,
     "в работе":  false,
     "отклонено": false,
   })
+
+  function setCurrent(item) {
+    setCurrent2(item)
+
+    Object.keys(statuses).forEach((key) => {
+      statuses[key] = (key === item.status)
+    })
+
+    update(mark + 1)
+  }
 
   useEffect(() => {
     const fn = async () => {
