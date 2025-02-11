@@ -37,15 +37,12 @@ export default function App() {
     fn()
   }, [])
 
+  if (!data.length)
+    return null
+
   return (
     <div style={{ display: "flex" }}>
-      {
-        data.length
-          && (
-            <LocalMap data={data} setCurrent={setCurrent} />
-          )
-      }
-
+      <LocalMap data={data} setCurrent={setCurrent} />
       <EditPanel current={current as GisRecord} statuses={statuses} />
     </div>
   )
