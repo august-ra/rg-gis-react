@@ -1,6 +1,8 @@
 import { get, ref, set } from "firebase/database"
 import { db } from "./firebaseConfig"
 
+import type { GisInfo, GisRecord } from "../utils/types"
+
 
 export const gisApi = {
 
@@ -14,9 +16,9 @@ export const gisApi = {
       if (!snapshot.exists())
         return []
 
-      const data = Object.values(snapshot.val())
-      data.forEach((item) => {
-        item.kind = item.kind.trim().toLowerCase()
+      const data = Object.values(snapshot.val()) as GisInfo
+      data.forEach((item: GisRecord) => {
+        item.kind   = item.kind.trim().toLowerCase()
         item.status = item.status === "new" ? "новый" : item.status
       })
 
@@ -29,7 +31,7 @@ export const gisApi = {
 
   // writing methods
 
-  async addGIS(id, data) {
+  async addGIS(id: string, data: GisRecord) {
     const path = `gis/${id}`
 
     await set(ref(db, path), data)
