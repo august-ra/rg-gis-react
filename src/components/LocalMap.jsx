@@ -91,7 +91,7 @@ export default function LocalMap({ data, setCurrent }) {
                     uniquePoint[key] = 1
                   }
 
-                  return <Placemark key={item.id} modules={["geoObject.addon.balloon"]}
+                  return <Placemark key={item._id} modules={["geoObject.addon.balloon"]}
                                     geometry={[item.x, item.y]}
                                     properties={properties} options={options} onClick={() => setCurrent(item)} />
                 })
