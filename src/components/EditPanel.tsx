@@ -6,15 +6,20 @@ import { getLinkGoogle, getLinkRosreestr, getLinkYandex } from "../utils/coordin
 import type { FilterOptions, GisRecord } from "../utils/types"
 
 
-export default function EditPanel({ current, statuses }) {
+interface Props {
+  current: GisRecord
+  statuses: FilterOptions
+}
+
+export default function EditPanel({ current, statuses }: Props) {
   const [mark, update] = useState(0)
 
-  function setStatus(key) {
+  function setStatus(key: string) {
     gisApi.addGIS(current._id, { ...current, status: key })
 
     current.status = key
 
-    Object.keys(statuses).forEach((key) => {
+    Object.keys(statuses).forEach((key: string) => {
       statuses[key] = (key === current.status)
     })
 

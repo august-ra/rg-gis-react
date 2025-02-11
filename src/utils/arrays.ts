@@ -1,12 +1,12 @@
 import type { FilterOptions, GisInfo, GisRecord, GisRecordKey } from "./types"
 
 
-export function getDistinctValues(field, source) {
-  const result = []
+export function getDistinctValues(field: GisRecordKey, source: GisInfo): string[] {
+  const result: string[] = []
 
-  source.forEach((item) => {
-    if (!result.includes(item[field]))
-      result.push(item[field])
+  source.forEach((item: GisRecord) => {
+    if (!result.includes(item[field] as string))
+      result.push(item[field] as string)
   })
 
   result.sort()
@@ -14,9 +14,9 @@ export function getDistinctValues(field, source) {
   return result
 }
 
-export function getDistinctOptions(field, source, defaultOption = false) {
-  const list = getDistinctValues(field, source)
-  const result = list.reduce((acc, item) => {
+export function getDistinctOptions(field: GisRecordKey, source: GisInfo, defaultOption: boolean = false): FilterOptions {
+  const list: string[] = getDistinctValues(field, source)
+  const result: FilterOptions = list.reduce((acc: FilterOptions, item: string) => {
     acc[item] = defaultOption
 
     return acc
