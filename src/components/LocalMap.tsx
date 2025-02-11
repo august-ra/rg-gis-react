@@ -7,7 +7,7 @@ import type { FilterOptions, GisInfo, GisRecord } from "../utils/types"
 
 interface Props {
   data: GisInfo
-  setCurrent: React.Dispatch<React.SetStateAction<GisRecord>>
+  setCurrent: (item: GisRecord) => void
 }
 
 export default function LocalMap({ data, setCurrent }: Props) {
