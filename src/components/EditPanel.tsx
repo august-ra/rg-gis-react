@@ -3,6 +3,8 @@ import { useState } from "react"
 import { gisApi } from "../api/gisApi"
 import { getLinkGoogle, getLinkRosreestr, getLinkYandex } from "../utils/coordinates"
 
+import type { FilterOptions, GisRecord } from "../utils/types"
+
 
 export default function EditPanel({ current, statuses }) {
   const [mark, update] = useState(0)

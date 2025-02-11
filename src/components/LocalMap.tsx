@@ -2,6 +2,7 @@ import { useState } from "react"
 import { YMaps, Map, Clusterer, Placemark, FullscreenControl, TypeSelector, ListBox, ListBoxItem } from "@pbe/react-yandex-maps"
 
 import { getDistinctOptions } from "../utils/arrays"
+import type { FilterOptions, GisInfo, GisRecord } from "../utils/types"
 
 
 export default function LocalMap({ data, setCurrent }) {

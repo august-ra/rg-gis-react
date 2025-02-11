@@ -1,6 +1,8 @@
 import { get, ref, set } from "firebase/database"
 import { db } from "./firebaseConfig"
 
+import type { GisInfo, GisRecord } from "../utils/types"
+
 
 export const gisApi = {
 

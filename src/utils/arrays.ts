@@ -1,3 +1,5 @@
+import type { FilterOptions, GisInfo, GisRecord, GisRecordKey } from "./types"
+
 
 export function getDistinctValues(field, source) {
   const result = []
